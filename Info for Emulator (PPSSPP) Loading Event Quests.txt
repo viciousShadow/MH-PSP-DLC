@@ -13,4 +13,4 @@ You can easily load event quests from this repo even if you have your own save f
 
 Bonus. if you copy all event savedata into ppsspp folder, you can quickly switch between event savedata by renaming them back and forth (together with your own savedata). backing up regularly is very much recommended as renaming could be easily messed up.
 
-*MHF1 versions (usa/eur) don't originally have any Event Quests. But events can be loaded in MHF1usa if a save has been converted from MHP with event quests in it. though, for unlocking the event quest menu, a code is needed (see Event-via-Code folder).
+*MHF1 versions (usa/eur) don't originally have any Event Quests. But events can be loaded in MHF1usa if a save has been converted from MHP with event quests in it. though, for unlocking the event quest menu, a code is needed (see Event-via-Code folder). To get the general idea, check youtu.be/4xQAyCMwx8s
