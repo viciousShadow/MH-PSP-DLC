@@ -2,7 +2,7 @@
 You can easily load event quests from this repo even if you have your own save file without any event quests downloaded already (Emulator PPSSPP needed).
 
 0. make a backup of your savegame (zip the folder)
-1. start ppsspp and load game with your savedata (either MHP1/MHP2/MHP2G / MHF2/MHFU).
+1. start ppsspp and load game with your savedata (either MHP1/MHP2/MHP2G / MHF1*/MHF2/MHFU).
 2. still in ppsspp, go into gathering hall and open up the quest menu from guild gal (don't load event quests yet!).
 3. with your file browser (e.g. in windows explorer) go to the ppsspp/memstick/PSP/SAVEDATA folder and backup your save (simply rename it to something like "ULJM05066_MYSAVE").
 4. now copy the event savedata from this repo into the ppsspp/memstick/PSP/SAVEDATA folder. make sure to put the save folder with the event you want to do. it should be called something like "ULJM05066".
@@ -12,3 +12,5 @@ You can easily load event quests from this repo even if you have your own save f
 8. let others join the quest and continue normally with playing and saving your game.
 
 Bonus. if you copy all event savedata into ppsspp folder, you can quickly switch between event savedata by renaming them back and forth (together with your own savedata). backing up regularly is very much recommended as renaming could be easily messed up.
+
+*MHF1 versions (usa/eur) doesn't originally have any Event Quests. But events can be loaded in MHF1usa if the save has been converted from MHP with event quests in it. though, for unlocking the event quest menu, a code is needed (see Event-via-Code folder).
