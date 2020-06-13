@@ -31,10 +31,11 @@ _C0 «MHP_DLC_EVENT_QUESTS» JAP
 _C0 <ID=60001> 3☆ Kirin (Swamp)
 ...
 _C0 EVENT-VIA-CODE USAGE:
-_C0 0. Preparation: Have Kirin Event Quest in your Save.
-_C0 1. Codes are Off. Go into GH and load your Events from Savefile (Might do Save-Swapping to load Events from an external save.)
+_C0 0. Preparation: Have an Event Quest in your Save. ( https://github.com/viciousShadow/MH-PSP-DLC )
+_C0 us1. Codes are Off (Enable only "Unlock EventQuestMenu" Code for now). Go into GH and load your Events from Savefile. (You might have to do Save-Swapping to load Events from an external save if you dont have any Events saved on you main char save.)
+_C0 jp1. Codes are Off. Go into GH and load your Events from Savefile. (You might have to do Save-Swapping to load Events from an external save if you dont have any Events saved on you main char save.)
 _C0 2. Enable Code for the Event Quest you would like to do. (Only ONE at a time!)
-_C0 2a. Return to game. Press left/right to cycle through event list and let it update to your desired event.
+_C0 2a. Return to game. Press left/right to cycle through event list and let it update to your desired event. (First Event should be replaced now.)
 _C0 2b. TURN OFF EVENT-QUEST-CODE! (Game might crash on quest start otherwise.)
 _C0 3. Post the quest, let others join and continue normally.
 _C0 Note: Enable Event-via-Code only when you are inside the loaded Event Quest menu! Otherwise, you will get a gray error message when saving. (Turn off code to fix it.)
@@ -42,41 +43,42 @@ _C0 Note: Enable Event-via-Code only when you are inside the loaded Event Quest 
 
 
 enable DLCQ in mhf1 us/eu:
-	cheat engine find guilde qlvl selected index (0=1star,5=urgent)
-	set it to 6 (courser will disappear) and press confirm X
+	cheat engine find guildie qlvl selected index (0=1star,5=urgent)
+	set it to 6 (green triangle coursor will disappear) and press X-confirm
 	loads events if there are any
 
 add events to mhf usa save:
-	region convert your saved char to mhp (see «convert save with ppsspp»)
+	region convert your saved usa-char to mhp (see «convert save with ppsspp»)
 	make savestate in mhp with your char loaded
 	paste a mhp save with event quests into ppsspp/savdata dir
 	enable code: Synchronize PPSSPP Savestate Saving
 	load savestate
 	save to MC (this would give error without code)
-	==»» now you have your char in mhp region
+	==»» now you have your char in mhp region with an event quest on the save
 	convert back to usa ver (see «convert save with ppsspp»)
 
 «convert save with ppsspp» (ex. usa to jap):
-	set memstick/PSP/SYSTEM/ppsspp.ini EncryptSave = False
+	PPSSPP program closed
+	set PPSSPP/memstick/PSP/SYSTEM/ppsspp.ini EncryptSave = False
 	load MHF1usa char and save ingame
 	copy ULUS10084/MHPSP.BIN and PARAM.SFO into jap region save
 	set EncryptSave = True
 	load MHP and save again to make it generic (will even work when transferred to orig. psp)
 
 
-CQ.PAT Proto.ods
 \R\R3C\t00\t00\t00\n
 \n\nde\tad\tbe\tef\n3C\t00\t00\t00\n
-=IF(F1="",IF(F1=F2,"// </CQ>","_C0 <CQ ID="&HEX2DEC(D25&C25)&"> "& IF(E35="","",E35&IF(E36="","",E36&IF(E37="","",E37&IF(E38="","",E38&IF(E39="","",E39&IF(E40="","",E40&IF(E41="","",E41&IF(E42="","",E42&IF(E43="","",E43&IF(E44="","",E44)))))))))) &""), IF(F1=$H$2,"", IF(F1=DEC2HEX(HEX2DEC($H$2)+4+88,7),"_L 0x2"&F1&" 0x"&"EA61"&B1&A1,"_L 0x2"&F1&" 0x"&D1&C1&B1&A1)))
-
+CQ.PAT Proto.ods
+replaceQID:	G1=IF(F1="";IF(F1=F2;"// </CQ>";"_C0 <CQ ID="&HEX2DEC(D25&C25)&"> "& IF(E35="";"";E35&IF(E36="";"";E36&IF(E37="";"";E37&IF(E38="";"";E38&IF(E39="";"";E39&IF(E40="";"";E40&IF(E41="";"";E41&IF(E42="";"";E42&IF(E43="";"";E43&IF(E44="";"";E44)))))))))) &""); IF(F1=$H$2;""; IF(F1=DEC2HEX(HEX2DEC($H$2)+4+88;7);"_L 0x2"&F1&" 0x"&"EA61"&B1&A1;"_L 0x2"&F1&" 0x"&D1&C1&B1&A1)))
+v2-ignoreQID:	G1=IF(F1="";IF(F1=F2;"// </CQ>";"_C0 <CQ ID="&HEX2DEC(D25&C25)&"> "& IF(E35="";"";E35&IF(E36="";"";E36&IF(E37="";"";E37&IF(E38="";"";E38&IF(E39="";"";E39&IF(E40="";"";E40&IF(E41="";"";E41&IF(E42="";"";E42&IF(E43="";"";E43&IF(E44="";"";E44)))))))))) &""); IF(F1=$H$2;""; IF(F1=DEC2HEX(HEX2DEC($H$2)+4+88;7);"_L 0x2"&F1&" 0x"&"0000"&B1&A1;"_L 0x2"&F1&" 0x"&D1&C1&B1&A1)))
 
 japmhp
 0cf31e0//x.094f31e0
-//x.094f99f0
-//x.09500200
+       //x.094f99f0
+       //x.09500200
 
 usa
 0d01a60//x.09501A60 60002.mib slot loaded 1
-//x.09508270 60001.mib slot loaded 2
-//x.0950EA80 60015.mib slot loaded 3
+       //x.09508270 60001.mib slot loaded 2
+       //x.0950EA80 60015.mib slot loaded 3
 
