@@ -79,7 +79,7 @@ add events to mhf usa save:
 	load MHF1usa char and save ingame
 	copy ULUS10084/MHPSP.BIN and PARAM.SFO into jap region save
 	set EncryptSave = True
-	load MHP and save again to make it generic so that it loads on original PSP hardwere if transferred
+	load MHP and save again to make it generic so that it loads on original PSP hardware if transferred
 
 
 ===dev create codes
