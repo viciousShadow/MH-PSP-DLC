@@ -1,32 +1,16 @@
-mhp/mhf ULJM05066/MHPSP.BIN offsets
+mhp/mhf ULJM05066/MHPSP.BIN savegame offsets
 	memstick/PSP/SYSTEM/ppsspp.ini EncryptSave = False
 
-DLCQ1@.10000 xlen.6800+x10:m60009.mib......=6d 36 30 30 30 39 2e 6d 69 62 00 00 00 00 00 00
+DLCQ1@.10000	xlen.6800+x10:m60009.mib......=	6d 36 30 30 30 39 2e 6d 69 62 00 00 00 00 00 00
 DLCQ2@.16810
 DLCQ3@.1d020
 
-char1name@.101c
-char2name@.601c
-char3name@.b01c
-char1gcname@.5378
-char2gcname@.a378
-char3gcname@.f378
-
+char1name@.101c	char1gcname@.5378
+char2name@.601c	char2gcname@.a378
+char3name@.b01c	char3gcname@.f378
 
 
 ===
-_C1 Unlock EventQuestMenu at Red Guild Maid (Press "Right" at Urgent Quests. Urgent Quest Menu only selected and not opened yet! It should be save to leave this code always on) USA
-_L 0xE0020005 0x01141182//UrgentLevelSelected
-_L 0xE0010020 0x00238f9C//RightPress
-_L 0x01141182 0x00000006//GoEventQuestIndex
-
-_C1 Unlock EventQuestMenu at Red Guild Maid (Press "Right" at Urgent Quests. Urgent Quest Menu only selected and not opened yet! It should be save to leave this code always on, but it will crash in EUR version if quests are present in savedata) EUR
-_L 0xE0020005 0x01142102//UrgentLevelSelected
-_L 0xE0010020 0x00239C5C//RightPress
-_L 0x01142102 0x00000006//GoEventQuestIndex
-
-
-
 _C0 «MHP_DLC_EVENT_QUESTS» JAP
 _C0 <ID=60001> 3☆ Kirin (Swamp)
 ...
@@ -42,6 +26,38 @@ _C0 Note: Enable Event-via-Code only when you are inside the loaded Event Quest 
 // </MHP_DLC_EVENT_QUESTS>
 
 
+_C1 USA Unlock EventQuestMenu at Red Guild Maid (Press "Right" at Urgent Quests. Urgent Quest Menu only selected and not opened yet! It should be save to leave this code always on) USA
+_L 0xE0020005 0x01141182//UrgentLevelSelected
+_L 0xE0010020 0x00238f9C//RightPress
+_L 0x01141182 0x00000006//GoEventQuestIndex
+
+_C1 EUR Unlock EventQuestMenu at Red Guild Maid (Press "Right" at Urgent Quests. Urgent Quest Menu only selected and not opened yet! It should be save to leave this code always on, but it will crash in EUR version if quests are present in savedata) EUR
+_L 0xE0020005 0x01142102//UrgentLevelSelected
+_L 0xE0010020 0x00239C5C//RightPress
+_L 0x01142102 0x00000006//GoEventQuestIndex
+
+
+===
+in PPSSPP DLC Quests can be loaded with any save:
+	load your saved char
+	go to gh
+	backup your current save game located at PPSSPP\memstick\PSP\SAVEDATA\ULxx00000 (ULxx00000-folder being the id of your game)
+	swap with a save which got DLCs downloaded while PPSSPP is still running
+	load up event quests
+	swap back to your backed up save game
+	post quest and continue normally
+
+fastest way of doing above is probably: 
+	load into gh
+	rename your char save folder to something like ULJM05066bak, 
+	pasting DLC save, 
+	loading DLC in emu, 
+	deleting DLC save, 
+	renaming your ULJM05066bak back to ULJM05066
+	proceed normally
+
+
+===dev notes
 enable DLCQ in mhf1 us/eu:
 	cheat engine find guildie qlvl selected index (0=1star,5=urgent)
 	set it to 6 (green triangle coursor will disappear) and press X-confirm
@@ -50,11 +66,11 @@ enable DLCQ in mhf1 us/eu:
 add events to mhf usa save:
 	region convert your saved usa-char to mhp (see «convert save with ppsspp»)
 	make savestate in mhp with your char loaded
-	paste a mhp save with event quests into ppsspp/savdata dir
+	paste a mhp save with event quests into ppsspp/savedata dir
 	enable code: Synchronize PPSSPP Savestate Saving
 	load savestate
 	save to MC (this would give error without code)
-	==»» now you have your char in mhp region with an event quest on the save
+	=» now you have your char in mhp region with an event quest on the save
 	convert back to usa ver (see «convert save with ppsspp»)
 
 «convert save with ppsspp» (ex. usa to jap):
@@ -63,22 +79,22 @@ add events to mhf usa save:
 	load MHF1usa char and save ingame
 	copy ULUS10084/MHPSP.BIN and PARAM.SFO into jap region save
 	set EncryptSave = True
-	load MHP and save again to make it generic (will even work when transferred to orig. psp)
+	load MHP and save again to make it generic so that it loads on original PSP hardwere if transferred
 
 
+===dev create codes
 \R\R3C\t00\t00\t00\n
 \n\nde\tad\tbe\tef\n3C\t00\t00\t00\n
 CQ.PAT Proto.ods
 replaceQID:	G1=IF(F1="";IF(F1=F2;"// </CQ>";"_C0 <CQ ID="&HEX2DEC(D25&C25)&"> "& IF(E35="";"";E35&IF(E36="";"";E36&IF(E37="";"";E37&IF(E38="";"";E38&IF(E39="";"";E39&IF(E40="";"";E40&IF(E41="";"";E41&IF(E42="";"";E42&IF(E43="";"";E43&IF(E44="";"";E44)))))))))) &""); IF(F1=$H$2;""; IF(F1=DEC2HEX(HEX2DEC($H$2)+4+88;7);"_L 0x2"&F1&" 0x"&"EA61"&B1&A1;"_L 0x2"&F1&" 0x"&D1&C1&B1&A1)))
-v2-ignoreQID:	G1=IF(F1="";IF(F1=F2;"// </CQ>";"_C0 <CQ ID="&HEX2DEC(D25&C25)&"> "& IF(E35="";"";E35&IF(E36="";"";E36&IF(E37="";"";E37&IF(E38="";"";E38&IF(E39="";"";E39&IF(E40="";"";E40&IF(E41="";"";E41&IF(E42="";"";E42&IF(E43="";"";E43&IF(E44="";"";E44)))))))))) &""); IF(F1=$H$2;""; IF(F1=DEC2HEX(HEX2DEC($H$2)+4+88;7);"_L 0x2"&F1&" 0x"&"0000"&B1&A1;"_L 0x2"&F1&" 0x"&D1&C1&B1&A1)))
+v2-ignoreQID:	G1=IF(F1="";IF(F1=F2;"// </CQ>";"_C0 <CQ ID="&HEX2DEC(D25&C25)&"> "& IF(E35="";"";E35&IF(E36="";"";E36&IF(E37="";"";E37&IF(E38="";"";E38&IF(E39="";"";E39&IF(E40="";"";E40&IF(E41="";"";E41&IF(E42="";"";E42&IF(E43="";"";E43&IF(E44="";"";E44)))))))))) &""); IF(F1=$H$2;""; IF(F1=DEC2HEX(HEX2DEC($H$2)+4+88;7);"_L 0x1"&F1&" 0x"&"0000"&B1&A1;"_L 0x2"&F1&" 0x"&D1&C1&B1&A1)))
 
-japmhp
+jap-mhp
 0cf31e0//x.094f31e0
        //x.094f99f0
        //x.09500200
 
-usa
+usa-mhf1
 0d01a60//x.09501A60 60002.mib slot loaded 1
        //x.09508270 60001.mib slot loaded 2
        //x.0950EA80 60015.mib slot loaded 3
-
